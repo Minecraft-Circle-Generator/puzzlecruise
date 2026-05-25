@@ -20,57 +20,70 @@ const latestPip = sortedPips[0];
 <Layout title="PuzzleCruise - Daily Hints for NYT Connections & Pips">
     <Header />
     
-    <main class="flex-grow w-full max-w-3xl mx-auto px-4 py-8 space-y-12">
-        <section class="text-center space-y-4">
-            <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-white">
+    <main class="flex-grow w-full max-w-6xl mx-auto px-4 py-8 space-y-12">
+        <section class="text-center space-y-4 mb-12">
+            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white">
                 NYT Games Hints Today
             </h1>
-            <p class="text-gray-400 text-lg">
+            <p class="text-gray-400 text-lg md:text-xl">
                 Sail smoothly through daily hints without ruining the puzzle.
             </p>
         </section>
 
-        <!-- Connections Section -->
-        <section>
-            <div class="mb-4 border-b border-gray-800 pb-2 flex justify-between items-center">
-                <h2 class="text-2xl font-bold text-gray-100">Connections</h2>
-                <a href="/connections/" class="text-sm text-orange-500 hover:text-orange-400">View Archive &rarr;</a>
-            </div>
-            
-            {latestConnection ? (
-                <div class="prose prose-invert max-w-none">
-                    <!-- Dynamic Client-Side Date Checker Logic can be added here, but for now we render latest -->
-                    <div class="bg-gray-800/50 p-4 rounded-md mb-6 border border-gray-700">
-                        <p class="text-sm text-gray-300 font-medium">Latest: {latestConnection.data.date.toISOString().split('T')[0]}</p>
-                    </div>
-                    <AdWrapper />
-                    <!-- Render Content -->
-                    <div set:html={latestConnection.rendered?.html} />
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <!-- Connections Section -->
+            <section class="bg-[#111827] rounded-xl p-6 border border-gray-800 shadow-xl">
+                <div class="mb-6 border-b border-gray-800 pb-4 flex justify-between items-center">
+                    <h2 class="text-2xl font-bold text-gray-100 flex items-center gap-2">
+                        <span class="text-orange-500">#</span> Connections
+                    </h2>
+                    <a href="/connections/" class="text-sm font-semibold text-orange-500 hover:text-orange-400 transition-colors">View Archive &rarr;</a>
                 </div>
-            ) : (
-                <p class="text-gray-500 italic">Check back later for today's hints.</p>
-            )}
-        </section>
-        
-        <!-- Pips Section (Placeholder) -->
-        <section>
-            <div class="mb-4 border-b border-gray-800 pb-2 flex justify-between items-center">
-                <h2 class="text-2xl font-bold text-gray-100">Pips</h2>
-                <a href="/pips/" class="text-sm text-orange-500 hover:text-orange-400">View Archive &rarr;</a>
-            </div>
-            
-            {latestPip ? (
-                <div class="prose prose-invert max-w-none">
-                    <div class="bg-gray-800/50 p-4 rounded-md mb-6 border border-gray-700">
-                        <p class="text-sm text-gray-300 font-medium">Latest: {latestPip.data.date.toISOString().split('T')[0]}</p>
+                
+                {latestConnection ? (
+                    <div class="prose prose-invert max-w-none">
+                        <div class="bg-gray-800/40 p-4 rounded-md mb-6 border border-gray-700 flex justify-between items-center">
+                            <p class="text-sm text-gray-300 font-medium">Latest: <span class="text-white">{latestConnection.data.date.toISOString().split('T')[0]}</span></p>
+                            <span class="px-2 py-1 bg-green-500/20 text-green-400 text-xs rounded font-bold uppercase tracking-wide">Live</span>
+                        </div>
+                        <AdWrapper />
+                        <!-- Render Content -->
+                        <div set:html={latestConnection.rendered?.html} />
                     </div>
-                    <!-- Render Content -->
-                    <div set:html={latestPip.rendered?.html} />
+                ) : (
+                    <div class="flex flex-col items-center justify-center py-12 text-gray-500 bg-gray-900/30 rounded-lg border border-dashed border-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mb-2 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <p class="italic">Check back later for today's hints.</p>
+                    </div>
+                )}
+            </section>
+            
+            <!-- Pips Section (Placeholder) -->
+            <section class="bg-[#111827] rounded-xl p-6 border border-gray-800 shadow-xl">
+                <div class="mb-6 border-b border-gray-800 pb-4 flex justify-between items-center">
+                    <h2 class="text-2xl font-bold text-gray-100 flex items-center gap-2">
+                        <span class="text-blue-500">#</span> Pips
+                    </h2>
+                    <a href="/pips/" class="text-sm font-semibold text-blue-500 hover:text-blue-400 transition-colors">View Archive &rarr;</a>
                 </div>
-            ) : (
-                <p class="text-gray-500 italic">Check back later for today's Pips domino layouts.</p>
-            )}
-        </section>
+                
+                {latestPip ? (
+                    <div class="prose prose-invert max-w-none">
+                        <div class="bg-gray-800/40 p-4 rounded-md mb-6 border border-gray-700 flex justify-between items-center">
+                            <p class="text-sm text-gray-300 font-medium">Latest: <span class="text-white">{latestPip.data.date.toISOString().split('T')[0]}</span></p>
+                            <span class="px-2 py-1 bg-green-500/20 text-green-400 text-xs rounded font-bold uppercase tracking-wide">Live</span>
+                        </div>
+                        <!-- Render Content -->
+                        <div set:html={latestPip.rendered?.html} />
+                    </div>
+                ) : (
+                    <div class="flex flex-col items-center justify-center py-12 text-gray-500 bg-gray-900/30 rounded-lg border border-dashed border-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mb-2 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <p class="italic">Check back later for today's Pips domino layouts.</p>
+                    </div>
+                )}
+            </section>
+        </div>
     </main>
 
     <Footer />

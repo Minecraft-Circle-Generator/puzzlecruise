@@ -1,14 +1,20 @@
 ---
 ---
-<header class="w-full max-w-3xl mx-auto px-4 py-6 flex justify-between items-center border-b border-gray-800">
-    <div class="text-2xl font-bold text-orange-500 tracking-wider">
-        <a href="/">PUZZLECRUISE</a>
+<header class="w-full max-w-6xl mx-auto px-4 py-6 flex flex-col md:flex-row justify-between items-center border-b border-gray-800 gap-4 md:gap-0">
+    <div class="flex items-center space-x-4">
+        <div class="flex items-center space-x-2 bg-gray-900/80 px-3 py-1.5 rounded-full border border-gray-800 shadow-inner">
+            <span class="relative flex h-2 w-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+            </span>
+            <span class="text-xs text-green-400 font-bold tracking-widest uppercase">Live</span>
+        </div>
+        <div class="text-2xl font-black text-orange-500 tracking-widest hover:text-orange-400 transition-colors">
+            <a href="/">PUZZLECRUISE</a>
+        </div>
     </div>
-    <div class="flex items-center space-x-2">
-        <span class="relative flex h-3 w-3">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-        </span>
-        <span class="text-sm text-green-400 font-medium">Live Updates</span>
-    </div>
-</header
+    <nav class="flex space-x-6 bg-gray-900/40 px-6 py-2 rounded-full border border-gray-800">
+        <a href="/connections/" class="text-sm text-gray-400 hover:text-white transition-colors font-medium">Connections</a>
+        <a href="/pips/" class="text-sm text-gray-400 hover:text-white transition-colors font-medium">Pips</a>
+    </nav>
+</header>

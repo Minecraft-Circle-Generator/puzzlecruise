@@ -85,7 +85,7 @@ Use EXACTLY this HTML format for EACH color (change background colors appropriat
     </div>
 </details>
 
-Generate ONLY the HTML body content. No extra explanations.`;
+IMPORTANT INSTRUCTION: Your ENTIRE output MUST be strictly in English. Do NOT output any Chinese text whatsoever. Generate ONLY the HTML body content. No extra explanations.`;
 
     const response = await openai.chat.completions.create({
         model: "gpt-4o-mini", // Cost effective model
