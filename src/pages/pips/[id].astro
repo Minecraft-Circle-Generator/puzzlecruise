@@ -1,0 +1,40 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import AdWrapper from '../../components/AdWrapper.astro';
+
+export async function getStaticPaths() {
+    const entries = await getCollection('pips');
+    return entries.map(entry => ({
+        params: { id: entry.id },
+        props: { entry },
+    }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Layout title={`${entry.data.title} - PuzzleCruise`}>
+    <Header />
+    
+    <main class="flex-grow w-full max-w-3xl mx-auto px-4 py-8 space-y-6">
+        <div class="border-b border-gray-800 pb-4">
+            <a href="/pips/" class="text-sm text-gray-500 hover:text-gray-300 mb-2 inline-block">&larr; Back to Archives</a>
+            <h1 class="text-3xl font-extrabold text-white mb-2">{entry.data.title}</h1>
+            <p class="text-orange-400 font-semibold">{entry.data.date.toISOString().split('T')[0]}</p>
+        </div>
+
+        <AdWrapper />
+
+        <article class="prose prose-invert max-w-none">
+            <Content />
+        </article>
+
+        <AdWrapper />
+    </main>
+
+    <Footer />
+</Layout>
