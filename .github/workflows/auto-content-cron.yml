@@ -23,7 +23,7 @@ jobs:
 
       - name: Run Content Generator
         env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: npm run generate:content
 
       - name: Commit and Push Changes

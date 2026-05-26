@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import OpenAI from 'openai';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -9,10 +9,8 @@ dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Initialize OpenAI
-const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
-});
+// Initialize Gemini client
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 async function fetchNYTConnections(dateString) {
     // Unofficial NYT API endpoint format
@@ -52,8 +50,11 @@ async function generateAIContent(rawData, dateString) {
 
 IMPORTANT INSTRUCTION: Your ENTIRE output MUST be strictly in English. Do NOT output any Chinese text whatsoever. 
 
-### The Persona
-- Tone: Conversational, slightly sarcastic about the puzzle setter's difficulty choices, but very encouraging to the player.
+### The Persona & Anti-AI Guidelines (CRITICAL)
+- Tone: Conversational, slightly sarcastic about the puzzle setter's difficulty choices, but very encouraging to the player. Write like a cynical Redditor or a hardcore gaming YouTuber.
+- Humanization: Use colloquialisms, casual slang, and contractions (e.g., gonna, wanna, kinda, y'all, damn, wtf).
+- BANNED WORDS (Never use these AI buzzwords): delve, tapestry, explore, furthermore, moreover, in conclusion, testament, crucial, vital, beacon, embark, navigate, multifaceted.
+- BANNED PHRASES: Do not use robotic transitions like "Firstly", "Secondly", or generic intros/outros like "Welcome to today's puzzle", "Get ready to dive in", or "Good luck!". Jump straight into the snarky commentary.
 - Goal: Do not spoil the puzzle immediately. Provide hints in 3 exact stages for EACH OF THE 4 COLORS (Yellow, Green, Blue, Purple). You MUST output all 4 colors.
 
 ### The Stages (CRITICAL SEO REQUIREMENT)
@@ -94,22 +95,29 @@ Use EXACTLY this HTML format for EACH color (change background colors appropriat
 
 IMPORTANT INSTRUCTION: Generate ONLY the YAML Frontmatter (if needed) and the HTML body content. Do not add any extra explanations, intros, or outros outside the HTML blocks.`;
 
-    const response = await openai.chat.completions.create({
-        model: "gpt-4o-mini", // Cost effective model
-        messages: [
-            { role: "system", content: systemPrompt },
-            { role: "user", content: `Here is the raw data:\n${promptData}` }
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+    const result = await model.generateContent({
+        contents: [
+            {
+                role: "user",
+                parts: [{ text: `SYSTEM DIRECTIVES:\n${systemPrompt}\n\nUSER REQUEST:\nHere is the raw data:\n${promptData}` }]
+            }
         ],
-        temperature: 0.7,
+        generationConfig: {
+            temperature: 0.7,
+        }
     });
 
-    return response.choices[0].message.content;
+    let output = result.response.text();
+    // Clean up any markdown block quotes if Gemini returns them
+    output = output.replace(/^```html\n/, '').replace(/^```\n/, '').replace(/```$/, '');
+    return output;
 }
 
 async function main() {
     try {
-        if (!process.env.OPENAI_API_KEY) {
-            throw new Error("OPENAI_API_KEY is missing in environment variables.");
+        if (!process.env.GEMINI_API_KEY) {
+            throw new Error("GEMINI_API_KEY is missing in environment variables.");
         }
 
         // Get tomorrow's date to fetch ahead of time (Timezone Arbitrage)
