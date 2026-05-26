@@ -143,6 +143,31 @@ async function main() {
         }
         const scrambledWordsStr = allWords.join(', ');
 
+        // Build Snippet Bait (Featured Snippet Bait)
+        let snippetBaitHTML = `
+<div class="mb-8">
+    <h2 class="text-2xl font-bold text-white mb-4">Today's NYT Connections Categories</h2>
+    <ul class="list-disc pl-6 space-y-2 text-gray-300">
+`;
+        if (rawData && rawData.categories) {
+            const colors = ['Yellow', 'Green', 'Blue', 'Purple'];
+            const sortedCats = [...rawData.categories].sort((a, b) => a.level - b.level);
+            sortedCats.forEach(cat => {
+                const color = colors[cat.level];
+                const words = cat.cards.map(c => c.content);
+                let displayWords = '';
+                if (cat.level === 0) { // Yellow: show 2 words
+                    displayWords = `${words[0]}, ${words[1]}, ... (Click below to reveal)`;
+                } else if (cat.level === 1) { // Green: show 1 word
+                    displayWords = `${words[0]}, ... (Click below to reveal)`;
+                } else { // Blue, Purple: show none
+                    displayWords = `... (Click below to reveal)`;
+                }
+                snippetBaitHTML += `        <li><strong>${color}:</strong> ${displayWords}</li>\n`;
+            });
+        }
+        snippetBaitHTML += `    </ul>\n</div>\n`;
+
         // 3. Assemble Markdown File
         const frontmatter = `---
 title: "NYT Connections Hints for ${dateString}"
@@ -152,6 +177,7 @@ game: "connections"
 
 Welcome to today's Connections hints! If you're stuck, use our progressive hints below. Don't scroll too fast!
 
+${snippetBaitHTML}
 <div class="bg-gray-800/50 border border-gray-700 p-4 rounded-md mb-8">
     <p class="text-sm text-gray-400 mb-2 font-semibold">For those checking to make sure you're on the right day, today's 16 words are:</p>
     <p class="text-gray-200 font-mono text-sm leading-relaxed">${scrambledWordsStr}</p>
