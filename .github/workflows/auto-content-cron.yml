@@ -4,6 +4,9 @@ on:
   schedule:
     # Run every day at 16:05 UTC (Midnight Sydney time)
     - cron: '5 16 * * *'
+  push:
+    branches:
+      - main
   workflow_dispatch: # Allow manual trigger
 
 jobs:
