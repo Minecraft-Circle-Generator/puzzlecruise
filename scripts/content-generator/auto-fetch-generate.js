@@ -112,8 +112,10 @@ async function main() {
             throw new Error("OPENAI_API_KEY is missing in environment variables.");
         }
 
-        // Hardcoded for manual generation of 2026-05-26
-        const dateString = '2026-05-26';
+        // Get tomorrow's date to fetch ahead of time (Timezone Arbitrage)
+        const date = new Date();
+        date.setDate(date.getDate() + 1);
+        const dateString = date.toISOString().split('T')[0];
 
         // 1. Fetch Data
         const rawData = await fetchNYTConnections(dateString);
