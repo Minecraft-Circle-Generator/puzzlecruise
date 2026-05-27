@@ -58,9 +58,19 @@ const colorMap: Record<string, string> = {
   Blue: 'bg-blue-500 text-white',
   Purple: 'bg-purple-600 text-white',
 };
+
+// Build dynamic SEO Meta Description that INCLUDES partial spoilers!
+// This is what Google will grab and show in the search results snippet.
+let partialSpoilerDesc = `NYT Connections hints today (${dateStr}). `;
+if (categories.length >= 2) {
+    const yellowWords = categories[0].words.slice(0, 2).join(', ');
+    const greenWords = categories[1].words.slice(0, 1).join(', ');
+    partialSpoilerDesc += `Yellow: ${yellowWords}... Green: ${greenWords}... `;
+}
+partialSpoilerDesc += `Click for full progressive hints and answers without spoiling your streak!`;
 ---
 
-<Layout title={`${entry.data.title} - PuzzleCruise`} description={`Spoiler-free progressive hints for NYT Connections ${dateStr}. ${categories.map(c => c.name).join(', ')}.`} type="article">
+<Layout title={`NYT Connections Hints Today (${dateStr}) - PuzzleCruise`} description={partialSpoilerDesc} type="article">
     <!-- Inject JSON-LD Schema for Google Rich Snippets -->
     <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
     
@@ -87,9 +97,8 @@ const colorMap: Record<string, string> = {
             </ol>
         </nav>
 
-        <!-- Page Header -->
         <div class="border-b border-gray-800 pb-4">
-            <h1 class="text-3xl md:text-4xl font-extrabold text-white mb-3">{entry.data.title}</h1>
+            <h1 class="text-3xl md:text-4xl font-extrabold text-white mb-3">NYT Connections Hints Today ({dateStr})</h1>
             <div class="flex justify-between items-center">
                 <p class="text-orange-400 font-semibold">{dateStr}</p>
                 <button onclick="navigator.clipboard.writeText(window.location.href); this.textContent = '✓ Copied!'; setTimeout(()=>this.textContent='Copy Link', 2000)" class="text-xs font-medium bg-gray-800 hover:bg-gray-700 px-3 py-1.5 rounded transition-colors flex items-center gap-1.5 text-gray-300">
