@@ -1,4 +1,4 @@
-name: Auto Content Generator (Connections)
+name: Auto Content Generator (All Games)
 
 on:
   schedule:
@@ -24,16 +24,16 @@ jobs:
       - name: Run Content Generator
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: npm run generate:content
+        run: npm run generate:all
 
       - name: Commit and Push Changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add src/content/connections/
+          git add src/content/connections/ src/content/pips/ src/content/wordle/ src/content/strands/
           
           # Only commit if there are changes
-          git diff --staged --quiet || (git commit -m "Auto-generate Connections hints" && git push)
+          git diff --staged --quiet || (git commit -m "Auto-generate daily game hints" && git push)
 
       - name: Trigger Google Indexing API
         env:
