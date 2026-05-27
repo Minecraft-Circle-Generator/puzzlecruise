@@ -7,6 +7,13 @@ const connections = defineCollection({
     title: z.string(),
     date: z.date(),
     game: z.string().default('connections'),
+    // Structured categories data for SEO snippet bait + 16-word verification
+    categories: z.array(z.object({
+      color: z.string(),
+      name: z.string(),
+      words: z.array(z.string()),
+    })).optional(),
+    allWords: z.array(z.string()).optional(),
   })
 });
 

@@ -142,49 +142,44 @@ async function main() {
 
         // Extract all 16 words and shuffle them
         let allWords = [];
+        const categoriesData = [];
+        const colors = ['Yellow', 'Green', 'Blue', 'Purple'];
         if (rawData && rawData.categories) {
-            rawData.categories.forEach(cat => {
-                cat.cards.forEach(card => {
-                    allWords.push(card.content);
+            rawData.categories.forEach((cat, index) => {
+                const words = cat.cards.map(c => c.content);
+                categoriesData.push({
+                    color: colors[index],
+                    name: cat.title,
+                    words: words,
                 });
+                allWords.push(...words);
             });
         }
-        // Shuffle the array
+        // Shuffle the 16 words array
         for (let i = allWords.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [allWords[i], allWords[j]] = [allWords[j], allWords[i]];
         }
-        const scrambledWordsStr = allWords.join(', ');
-
-        // Build Snippet Bait (Featured Snippet Bait)
-        let snippetBaitHTML = `
-<div class="mb-8">
-    <h2 class="text-2xl font-bold text-white mb-4">Today's NYT Connections Categories</h2>
-    <ul class="list-disc pl-6 space-y-2 text-gray-300">
-`;
-        if (rawData && rawData.categories) {
-            const colors = ['Yellow', 'Green', 'Blue', 'Purple'];
-            rawData.categories.forEach((cat, index) => {
-                const color = colors[index];
-                snippetBaitHTML += `        <li><strong>${color}:</strong> ... (Click below to reveal)</li>\n`;
-            });
-        }
-        snippetBaitHTML += `    </ul>\n</div>\n`;
 
         // 3. Assemble Markdown File
+        // Categories go into YAML frontmatter so the Astro template renders them
+        // properly (snippet bait for Google, 16-word box hidden from main flow).
+        // The article body contains ONLY the AI-generated progressive hints.
+        const categoriesYaml = categoriesData.map(c =>
+            `  - color: "${c.color}"\n    name: "${c.name.replace(/"/g, '\\"')}"\n    words: [${c.words.map(w => `"${w}"`).join(', ')}]`
+        ).join('\n');
+
+        const allWordsYaml = `  [${allWords.map(w => `"${w}"`).join(', ')}]`;
+
         const frontmatter = `---
 title: "NYT Connections Hints for ${dateString}"
 date: ${dateString}
 game: "connections"
+categories:
+${categoriesYaml}
+allWords:
+${allWordsYaml}
 ---
-
-Welcome to today's Connections hints! If you're stuck, use our progressive hints below. Don't scroll too fast!
-
-${snippetBaitHTML}
-<div class="bg-gray-800/50 border border-gray-700 p-4 rounded-md mb-8">
-    <p class="text-sm text-gray-400 mb-2 font-semibold">For those checking to make sure you're on the right day, today's 16 words are:</p>
-    <p class="text-gray-200 font-mono text-sm leading-relaxed">${scrambledWordsStr}</p>
-</div>
 
 `;
         const fullContent = frontmatter + htmlContent;
