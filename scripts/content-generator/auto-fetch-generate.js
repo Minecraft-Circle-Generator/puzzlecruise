@@ -64,6 +64,14 @@ To ensure we have enough engaging text for SEO and AdSense, you MUST write exact
 - Stage 2 (Synonym/Example Hint): Write exactly 4 sentences giving the starting letter of one word, or a strong synonym for one of the words, wrapping it in snarky commentary.
 - Stage 3 (Final Answer): The exact category name and the 4 words.
 
+### SEO Keyword Injection (MANDATORY)
+You MUST naturally weave the following exact phrases into your conversational hints (especially in the Stage 1 hints):
+- "NYT Connections hints today"
+- "Connections hints today"
+- "tips for Connections today"
+- "Connections today"
+Do not put them all in one place. Spread them out across the different color groups organically so they sound like natural gamer chatter (e.g. "If you're looking for Connections hints today, this yellow group is basically...").
+
 Use EXACTLY this HTML format for EACH color (change background colors appropriately: Yellow: bg-yellow-400, Green: bg-green-400, Blue: bg-blue-400, Purple: bg-purple-400):
 
 ### 🟨 Yellow Group

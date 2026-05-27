@@ -110,15 +110,15 @@ partialSpoilerDesc += `Click for full progressive hints and answers without spoi
 
         <!-- Editor's Note / KOL Persona -->
         <div class="bg-blue-900/20 border border-blue-800/50 rounded-lg p-4">
-            <h3 class="text-blue-300 font-bold mb-2 text-sm uppercase tracking-wide">Editor's Note:</h3>
-            <p class="text-sm text-blue-100/70 italic">Today's puzzle setter woke up choosing violence... But don't worry, we've broken down the hints into three layers: Category, Synonym, and the Final Answer. Reveal them slowly to save your streak!</p>
+            <h3 class="text-blue-300 font-bold mb-2 text-sm uppercase tracking-wide">Editor's Note on Connections Today:</h3>
+            <p class="text-sm text-blue-100/70 italic">Looking for <strong>Connections hints today</strong>? The puzzle setter woke up choosing violence... But don't worry, we've broken down our <strong>tips for Connections today</strong> into three layers: Category, Synonym, and the Final Answer. Reveal these <strong>NYT Connections hints today</strong> slowly to save your streak!</p>
         </div>
 
         <!-- 16-Word Verification Box (Hidden by default — not a spoiler wall) -->
         {allWords.length > 0 && (
-            <details class="group rounded-md border border-gray-800 bg-gray-900/50 overflow-hidden">
+            <details class="group rounded-md border border-gray-800 bg-gray-900/50 overflow-hidden mt-4">
                 <summary class="flex items-center justify-between px-4 py-3 cursor-pointer select-none text-sm text-gray-400 hover:text-gray-200 transition-colors">
-                    <span>🔍 Verify you're on the right puzzle (see today's 16 words)</span>
+                    <span>🔍 Verify you're on the right puzzle (see the 16 words for Connections Today)</span>
                     <svg class="h-4 w-4 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                 </summary>
                 <div class="px-4 pb-4 pt-2">
@@ -162,7 +162,7 @@ partialSpoilerDesc += `Click for full progressive hints and answers without spoi
              reference at the bottom, but it doesn't spoil the main experience. -->
         {categories.length > 0 && (
             <section class="mt-12 pt-8 border-t border-gray-800/50">
-                <h2 class="text-lg font-bold text-gray-400 mb-4">Today's NYT Connections Answer Categories</h2>
+                <h2 class="text-lg font-bold text-gray-400 mb-4">Connections Hints Today & Answer Categories</h2>
                 <ul class="space-y-2">
                     {categories.map(cat => (
                         <li class="flex items-center gap-3 text-sm">
