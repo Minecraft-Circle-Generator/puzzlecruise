@@ -80,12 +80,13 @@ const latestPip = sortedPips[0];
                                 <p class="text-sm text-gray-300 font-medium">Latest: <span class="text-white">{latestPip.data.date.toISOString().split('T')[0]}</span></p>
                                 <span class="px-2 py-1 bg-green-500/20 text-green-400 text-xs rounded font-bold uppercase tracking-wide">Live</span>
                             </div>
+                            <AdWrapper />
                             <p class="text-gray-400 my-6">
-                                The domino layout for today's Pips has been analyzed. View the solution and step-by-step strategy.
+                                The domino layout for today's Pips has been analyzed! Click below to view the exclusive, spoiler-free progressive hints and strategy guide.
                             </p>
                         </div>
                         <a href={`/pips/${latestPip.id}`} class="block w-full text-center py-4 rounded-md font-bold text-white bg-blue-600 hover:bg-blue-500 transition-colors shadow-lg mt-4">
-                            View Today's Solution 🚀
+                            View Today's Hints & Strategy 🚀
                         </a>
                     </div>
                 ) : (
