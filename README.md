@@ -1,43 +1,41 @@
-# Astro Starter Kit: Minimal
+# 🧩 PuzzleCruise - Your Ultimate Daily NYT Puzzle Guide
 
-```sh
-npm create astro@latest -- --template minimal
-```
+[![Website Status](https://img.shields.io/website?url=https%3A%2F%2Fpuzzlecruise.live&label=PuzzleCruise.live)](https://puzzlecruise.live)
+[![Astro](https://img.shields.io/badge/Built_with-Astro-ff5a03?logo=astro&logoColor=white)](https://astro.build)
+[![Daily Updates](https://img.shields.io/badge/Updates-Daily-green)]()
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Welcome to the official repository for **[PuzzleCruise](https://puzzlecruise.live)**! 
 
-## 🚀 Project Structure
+If you're stuck on today's New York Times games and looking for a nudge in the right direction without spoiling the fun, you've found the right place. PuzzleCruise provides automated, AI-crafted, progressive hints for your favorite daily puzzles.
 
-Inside of your Astro project, you'll see the following folders and files:
+👉 **Visit the live website here:** [**https://puzzlecruise.live**](https://puzzlecruise.live)
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+---
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## 🚀 Features & Daily Guides
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Our site offers daily updated solutions and progressive hints (from vague clues to final answers) for the most popular logic and word puzzles:
 
-Any static assets, like images, can be placed in the `public/` directory.
+- **[NYT Connections Hints Today](https://puzzlecruise.live/connections)**: Get a gentle push in the right direction. We break down the 4 color categories (Yellow, Green, Blue, Purple) into three stages: a category hint, a synonym/example, and finally, the complete answer if you need it.
+- **[Wordle Solver & Clues](https://puzzlecruise.live/wordle)**: Struggling with your 5-letter streak? We provide daily starting word suggestions and gradual hints to help you lock in the green tiles.
+- **[Strands Puzzle Answers](https://puzzlecruise.live/strands)**: Find the Spangram and hidden theme words with our targeted daily clues.
+- **[Pips Guide](https://puzzlecruise.live/pips)**: Quick tips and solutions for the newest visual logic puzzles.
 
-## 🧞 Commands
+---
 
-All commands are run from the root of the project, from a terminal:
+## 🛠️ How It Works (The Tech Stack)
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+PuzzleCruise is a blazing-fast static site built for optimal SEO and user experience.
 
-## 👀 Want to learn more?
+- **Framework**: [Astro](https://astro.build/) - For shipping zero JavaScript by default and maximizing Lighthouse scores.
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) - For a sleek, dark-mode-first aesthetic.
+- **Automation**: Node.js & GitHub Actions - A custom daily CRON job fetches the latest puzzle data and uses the **Google Gemini AI API** to generate human-like, conversational hints automatically.
+- **Hosting**: Deployed globally via Cloudflare Pages for instant load times.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## 📈 Why PuzzleCruise?
+
+We noticed that most "Connections answer today" sites are filled with ad-clutter and immediately spoil the puzzle. **[PuzzleCruise.live](https://puzzlecruise.live)** is designed by gamers, for gamers. Our 3-stage hint system ensures you can still experience the "Aha!" moment without giving up completely.
+
+---
+
+*Enjoying the daily hints? Bookmark **[PuzzleCruise.live](https://puzzlecruise.live)** and never lose your daily streak again!*

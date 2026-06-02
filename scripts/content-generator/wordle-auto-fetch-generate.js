@@ -148,7 +148,8 @@ async function main() {
         if (process.argv[2]) {
             dateString = process.argv[2];
         } else {
-            const date = new Date();
+            // 加上 8 小时的时差修正为北京时间，确保 GitHub Action 在半夜触发时日期是对的
+            const date = new Date(new Date().getTime() + 8 * 60 * 60 * 1000);
             date.setDate(date.getDate() + 1);
             dateString = date.toISOString().split('T')[0];
         }
