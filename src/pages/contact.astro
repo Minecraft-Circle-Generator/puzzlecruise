@@ -1,0 +1,38 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Contact Us - PuzzleCruise" description="Get in touch with the PuzzleCruise team.">
+    <Header />
+    <main class="flex-grow w-full max-w-4xl mx-auto px-4 py-12 text-gray-300">
+        <h1 class="text-4xl font-extrabold text-white mb-8">Contact Us</h1>
+        
+        <section class="bg-gray-900/50 p-8 rounded-xl border border-gray-800 space-y-6">
+            <p class="leading-relaxed text-lg">
+                We'd love to hear from you! Whether you have feedback about our hint system, spotted a typo, or just want to chat about today's tricky Connections puzzle, feel free to reach out.
+            </p>
+            
+            <div class="mt-8 space-y-4">
+                <h2 class="text-2xl font-bold text-gray-100">Email Us</h2>
+                <p>
+                    For all general inquiries, support, or partnership opportunities, please email us at:
+                </p>
+                <div class="bg-gray-800 p-4 rounded-md inline-block">
+                    <a href="mailto:hello@puzzlecruise.live" class="text-orange-400 hover:text-orange-300 font-bold text-xl transition-colors">
+                        hello@puzzlecruise.live
+                    </a>
+                </div>
+            </div>
+
+            <div class="mt-8 space-y-4">
+                <h2 class="text-2xl font-bold text-gray-100">DMCA & Copyright</h2>
+                <p class="leading-relaxed">
+                    If you believe that any content on PuzzleCruise infringes upon your copyright, please contact us immediately at the email above with the subject line <strong>"DMCA Request"</strong>. We will respond and take appropriate action as quickly as possible.
+                </p>
+            </div>
+        </section>
+    </main>
+    <Footer />
+</Layout>

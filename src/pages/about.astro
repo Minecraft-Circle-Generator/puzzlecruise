@@ -1,0 +1,47 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="About Us - PuzzleCruise" description="About PuzzleCruise - The spoiler-free NYT Games hint progressive guide.">
+    <Header />
+    <main class="flex-grow w-full max-w-4xl mx-auto px-4 py-12 space-y-8 text-gray-300">
+        <h1 class="text-4xl font-extrabold text-white mb-8">About PuzzleCruise</h1>
+        
+        <section class="space-y-4">
+            <h2 class="text-2xl font-bold text-gray-100">Our Mission</h2>
+            <p class="leading-relaxed text-lg">
+                PuzzleCruise was founded by a group of passionate puzzle enthusiasts who love the daily challenge of New York Times games like Connections and Strands. 
+                However, we noticed a major problem: when you get stuck and search for a hint online, most websites immediately spoil the entire answer! 
+                That completely ruins the "Aha!" moment that makes these games so enjoyable.
+            </p>
+            <p class="leading-relaxed text-lg">
+                That's why we built <strong>PuzzleCruise</strong>. Our goal is to provide a safe haven for players who just need a little nudge in the right direction. 
+                We developed a unique, <strong>3-stage progressive hint system</strong> that gently guides you toward the solution without giving it away upfront.
+            </p>
+        </section>
+
+        <section class="space-y-4 mt-8">
+            <h2 class="text-2xl font-bold text-gray-100">How We Do It</h2>
+            <p class="leading-relaxed">
+                Every day, our dedicated team solves the puzzles right at midnight and meticulously crafts progressive clues. 
+                We analyze the "tricky" crossover words and build a strategy guide that helps you identify the traps before you waste your precious lives.
+            </p>
+            <ul class="list-disc ml-6 space-y-2 mt-4 text-gray-400">
+                <li><strong>Stage 1:</strong> A gentle nudge about the category's theme.</li>
+                <li><strong>Stage 2:</strong> A stronger hint, usually involving a synonym or starting letter.</li>
+                <li><strong>Stage 3:</strong> The final answer, safely hidden behind spoiler warnings.</li>
+            </ul>
+        </section>
+
+        <section class="space-y-4 mt-8">
+            <h2 class="text-2xl font-bold text-gray-100">Independent & Fan-Made</h2>
+            <p class="leading-relaxed">
+                PuzzleCruise is an independent, fan-run project. We are not affiliated with, sponsored by, or endorsed by The New York Times Company. 
+                We are just puzzle lovers trying to help other puzzle lovers maintain their daily streaks with their pride intact.
+            </p>
+        </section>
+    </main>
+    <Footer />
+</Layout>

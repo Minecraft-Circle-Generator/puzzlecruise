@@ -1,25 +1,29 @@
 ---
-import '../styles/global.css';
-import SEO from '../components/SEO.astro';
+import "../styles/global.css";
+import SEO from "../components/SEO.astro";
 
 interface Props {
-	title: string;
+    title: string;
     description?: string;
-    type?: 'website' | 'article';
+    type?: "website" | "article";
 }
 
-const { title, description = "PuzzleCruise - Sail smoothly through daily hints without ruining the puzzle.", type = 'website' } = Astro.props;
+const {
+    title,
+    description = "PuzzleCruise - Sail smoothly through daily hints without ruining the puzzle.",
+    type = "website",
+} = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" translate="no" class="dark">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
+<html lang="en" class="dark">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="generator" content={Astro.generator} />
         <SEO title={title} description={description} type={type} />
-        
+
         <!-- Google Analytics (Placeholder) -->
         <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
         <script>
@@ -31,14 +35,23 @@ const { title, description = "PuzzleCruise - Sail smoothly through daily hints w
 
         <!-- Microsoft Clarity -->
         <script type="text/javascript">
-            (function(c,l,a,r,i,t,y){
-                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            (function (c, l, a, r, i, t, y) {
+                c[a] =
+                    c[a] ||
+                    function () {
+                        (c[a].q = c[a].q || []).push(arguments);
+                    };
+                t = l.createElement(r);
+                t.async = 1;
+                t.src = "https://www.clarity.ms/tag/" + i;
+                y = l.getElementsByTagName(r)[0];
+                y.parentNode.insertBefore(t, y);
             })(window, document, "clarity", "script", "wx5ybog78l");
         </script>
-	</head>
-	<body class="bg-[#0b0f19] text-[#e5e7eb] font-sans antialiased min-h-screen flex flex-col">
-		<slot />
-	</body>
+    </head>
+    <body
+        class="bg-[#0b0f19] text-[#e5e7eb] font-sans antialiased min-h-screen flex flex-col"
+    >
+        <slot />
+    </body>
 </html>

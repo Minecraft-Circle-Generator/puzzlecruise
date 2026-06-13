@@ -7,13 +7,16 @@ import AdWrapper from '../components/AdWrapper.astro';
 
 // Fetch today's data or latest data
 const connectionsEntries = await getCollection('connections');
+const strandsEntries = await getCollection('strands');
 const pipsEntries = await getCollection('pips');
 
 // Sort by date descending
 const sortedConnections = connectionsEntries.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const sortedStrands = strandsEntries.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 const sortedPips = pipsEntries.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
 const latestConnection = sortedConnections[0];
+const latestStrands = sortedStrands[0];
 const latestPip = sortedPips[0];
 ---
 
@@ -30,7 +33,7 @@ const latestPip = sortedPips[0];
             </p>
         </section>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <!-- Connections Section -->
             <section class="bg-[#111827] rounded-xl p-6 border border-gray-800 shadow-xl">
                 <div class="mb-6 border-b border-gray-800 pb-4 flex justify-between items-center">
@@ -93,6 +96,39 @@ const latestPip = sortedPips[0];
                     <div class="flex flex-col items-center justify-center py-12 text-gray-500 bg-gray-900/30 rounded-lg border border-dashed border-gray-700">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mb-2 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                         <p class="italic">Check back later for today's Pips domino layouts.</p>
+                    </div>
+                )}
+            </section>
+            
+            <!-- Strands Section -->
+            <section class="bg-[#111827] rounded-xl p-6 border border-gray-800 shadow-xl">
+                <div class="mb-6 border-b border-gray-800 pb-4 flex justify-between items-center">
+                    <h2 class="text-2xl font-bold text-gray-100 flex items-center gap-2">
+                        <span class="text-purple-500">#</span> Strands
+                    </h2>
+                    <a href="/strands/" class="text-sm font-semibold text-purple-500 hover:text-purple-400 transition-colors">View Archive &rarr;</a>
+                </div>
+                
+                {latestStrands ? (
+                    <div class="flex flex-col h-full justify-between">
+                        <div>
+                            <div class="bg-gray-800/40 p-4 rounded-md mb-6 border border-gray-700 flex justify-between items-center">
+                                <p class="text-sm text-gray-300 font-medium">Latest: <span class="text-white">{latestStrands.data.date.toISOString().split('T')[0]}</span></p>
+                                <span class="px-2 py-1 bg-green-500/20 text-green-400 text-xs rounded font-bold uppercase tracking-wide">Live</span>
+                            </div>
+                            <AdWrapper />
+                            <p class="text-gray-400 my-6">
+                                Today's theme and spangram have been solved! Click below to view the exclusive, spoiler-free progressive hints.
+                            </p>
+                        </div>
+                        <a href={`/strands/${latestStrands.id}`} class="block w-full text-center py-4 rounded-md font-bold text-white bg-purple-600 hover:bg-purple-500 transition-colors shadow-lg mt-4">
+                            View Today's Hints & Strategy 🚀
+                        </a>
+                    </div>
+                ) : (
+                    <div class="flex flex-col items-center justify-center py-12 text-gray-500 bg-gray-900/30 rounded-lg border border-dashed border-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mb-2 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <p class="italic">Check back later for today's Strands hints.</p>
                     </div>
                 )}
             </section>
