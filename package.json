@@ -8,15 +8,18 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
+    "preview": "npm run build && wrangler dev",
     "astro": "astro",
     "generate:content": "node scripts/content-generator/auto-fetch-generate.js",
     "generate:wordle": "node scripts/content-generator/wordle-auto-fetch-generate.js",
     "generate:strands": "node scripts/content-generator/strands-auto-fetch-generate.js",
     "generate:pips": "node scripts/content-generator/pips-auto-fetch-generate.js",
-    "generate:all": "npm run generate:content && npm run generate:wordle && npm run generate:strands && npm run generate:pips"
+    "generate:all": "npm run generate:content && npm run generate:wordle && npm run generate:strands && npm run generate:pips",
+    "generate-types": "wrangler types",
+    "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^13.6.0",
     "@astrojs/sitemap": "^3.7.3",
     "@google/generative-ai": "^0.24.1",
     "@tailwindcss/vite": "^4.3.0",
@@ -25,5 +28,11 @@
     "googleapis": "^173.0.0",
     "openai": "^6.39.0",
     "tailwindcss": "^4.3.0"
+  },
+  "devDependencies": {
+    "wrangler": "^4.95.0"
+  },
+  "overrides": {
+    "vite": "^7"
   }
 }
